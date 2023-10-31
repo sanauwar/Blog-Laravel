@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
 
-                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li class="active"><a href="#">Dashboard User</a></li>
                     <li><a href="#">Age</a></li>
                     <li><a href="#">Gender</a></li>
                     <li><a href="#">Geo</a></li>
