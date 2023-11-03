@@ -1,21 +1,12 @@
-@include('custom_auth.layouts')
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@include('layouts.head')
 
 <body>
-    <div class="col-md-3">
+    
 
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-               
+
                 @if(session()->has('message'))
                 <div class="alert alert-success">
                     {{ session()->get('message') }}
@@ -57,11 +48,8 @@
 
             </div>
         </div>
-    </div>
-    <div class="col-md-3">
 
     </div>
-
 </body>
 
-</html>
+@include('layouts.footer')

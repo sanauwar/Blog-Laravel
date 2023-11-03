@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -36,20 +37,40 @@ require __DIR__ . '/auth.php';
 /**
  * Custom_Auth Routes...
  */
-// route::get('/', function () {
-//     return view('custom_auth.index');
-// });
 
-//TODO::
+/**
+ * Dashboard
+ */
 Route::get('/home', [CustomAuthController::class, 'home'])->name('home');
 
 
-
+/**
+ * Login
+ */
 Route::get('/user/login', [CustomAuthController::class, 'view'])->name('login.view');
 Route::post('/user/login', [CustomAuthController::class, 'login'])->name('login');
 
+/**
+ *Registration 
+ */
 
-//Registration
 Route::get('/', [CustomAuthController::class, 'register'])->name('register.view');
 Route::post('user/register', [CustomAuthController::class, 'store'])->name('store');
 Route::get('user/register', [CustomAuthController::class, 'register'])->name('register.view');
+
+/**
+ * User LOgout
+ */
+Route::get('user/logout', [CustomAuthController::class, 'logout'])->name('user.logout');
+
+/**
+ * Blog Routes
+ */
+Route::get('blog', [BlogController::class, 'view'])->name('blog.view');
+Route::post('blog/store', [BlogController::class, 'store'])->name('blog.store');
+Route::get('users/allBlog', [BlogController::class, 'allblog'])->name('allblog');
+
+/**
+ * Like Comment Routes 
+ */
+Route::get('blog/like', [BlogController::class, 'like'])->name('blog.like');

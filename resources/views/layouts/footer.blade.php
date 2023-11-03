@@ -35,5 +35,29 @@
         })
     })
 </script>
+<script>
+    $(document).ready(function() {
+        // alert('coming');
+        $(".blog-like").click(function() {
+            // alert(this.attr('blog_id'))
+            alert($(this).attr('blog_id'));
+            $.ajax({
+                method: 'GET',
+                url: "{{route('blog.like')}}",
+                data: {
+                    like: 1,
+                    Comment: 1,
+                },
+                success: function(res) {
+                    alert(res);
+                }
+            })
+        });
+        // $("#comment").click(function() {
+        //     // alert("comment");
+        // });
+
+    })
+</script>
 
 </html>

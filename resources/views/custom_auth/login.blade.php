@@ -1,25 +1,12 @@
-@include('custom_auth.layouts')
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@include('layouts.head')
 
 <body>
-    <div class="col-md-3">
+    
 
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <!-- @if(session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-                @endif -->
+
                 @if(session('email_error'))
                 <div class="alert alert-danger">
                     {{ session('email_error') }}
@@ -29,6 +16,11 @@
                 @if(session('password_error'))
                 <div class="alert alert-danger">
                     {{ session('password_error') }}
+                </div>
+                @endif
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
                 </div>
                 @endif
                 <h2>LogIN :</h2>
@@ -62,11 +54,8 @@
 
             </div>
         </div>
-    </div>
-    <div class="col-md-3">
 
     </div>
-
 </body>
 
-</html>
+@include('layouts.footer')
