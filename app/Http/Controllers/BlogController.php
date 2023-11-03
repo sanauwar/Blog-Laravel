@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+
 class BlogController extends Controller
 {
     public function view()
@@ -38,5 +39,20 @@ class BlogController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function allblog()
+    {
+        $userId = Auth::id();
+        // dd($userId);
+        $allblogs = Blog::all()->where('userId', '!=', $userId);
+        return view('custom_auth.allblog', ['allblogs' => $allblogs]);
+    }
+
+    public function like()
+    {   
+        
+
+        print_r($_GET);
     }
 }

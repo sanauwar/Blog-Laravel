@@ -32,6 +32,7 @@ class CustomAuthController extends Controller
                 return back()->with('password_error', 'Password is incorrect');
             }
         }
+
         return redirect('/home')->with('success', 'LoginSuccessfully');
     }
 
@@ -57,6 +58,24 @@ class CustomAuthController extends Controller
 
     public function home()
     {
-        return view('custom_auth.home');
+        $userId = Auth::id();
+        // dd($userId);
+        $user = User::select('users.id',  'blogs.userId', 'blogs.title', 'blogs.description')
+            ->join('blogs', 'users.id', '=', 'blogs.userId',)
+            ->where('blogs.userId', $userId)
+            ->get();
+
+        // dd($user);
+        return view('custom_auth.home', ['users' => $user]);
+    }
+
+    public function logout(Request $request)
+    {
+        // Auth::logout();
+        // dd(Auth::id());
+        session()->flash('success', 'You have been logged out successfully.');
+        // dd('logut');
+
+        return redirect('/user/login');
     }
 }
