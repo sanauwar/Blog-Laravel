@@ -76,14 +76,15 @@
 </style>
 
 <body>
+    <!-- {{$allblogs}} -->
     <div class="header">
         <h2>All Blogs </h2>
     </div>
     @foreach($allblogs as $blog)
-
     <div class="col-md-1">
 
     </div>
+
     <div class="row">
         <div class="leftcolumn">
             <div class="col-md-10>">
@@ -96,34 +97,24 @@
 
                         <img src="{{url('images/laravel.jpeg')}}" alt="profile Pic" height="200" width="200">
                     </div>
-                    <div >
+                    <div>
                         <span>
 
                             <button type="button" id="comment" class="btn btn-primary btn-lg"><i class="fa fa-thumbs-up">Comment</i> </button>
                         </span>
                         <span>
 
-                            <button type="button" id="like" blog_id="{{$blog->id}}" class="btn btn-primary btn-lg blog-like"><i class="fa fa-thumbs-up">Like</i> </button>
+                            <button type="button" id="like" blog_id="{{$blog->id}}" class="btn btn-primary btn-lg blog-like"><i class="fa fa-thumbs-up">Like<span class="all-likes" id="{{$blog->id}}">{{$blog->blogCount}}</span></i></button>
                         </span>
                     </div>
-
                 </div>
-
-
             </div>
-
-
             <div class="rightcolumn">
-
             </div>
         </div>
     </div>
     <div class="col-md-1>">
-
     </div>
-
     @endforeach
 </body>
-
-
 @include('layouts.footer')

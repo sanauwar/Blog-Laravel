@@ -64,18 +64,12 @@ class CustomAuthController extends Controller
             ->join('blogs', 'users.id', '=', 'blogs.userId',)
             ->where('blogs.userId', $userId)
             ->get();
-
-        // dd($user);
         return view('custom_auth.home', ['users' => $user]);
     }
 
     public function logout(Request $request)
     {
-        // Auth::logout();
-        // dd(Auth::id());
         session()->flash('success', 'You have been logged out successfully.');
-        // dd('logut');
-
         return redirect('/user/login');
     }
 }
