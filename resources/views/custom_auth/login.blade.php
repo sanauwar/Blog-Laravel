@@ -1,8 +1,6 @@
 @include('layouts.head')
 
 <body>
-    
-
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -20,6 +18,7 @@
                 @endif
                 @if(session('success'))
                 <div class="alert alert-success">
+
                     {{ session('success') }}
                 </div>
                 @endif
@@ -47,9 +46,6 @@
                         <button style="cursor:pointer" type="submit" class="btn btn-primary">Log In</button>
                         <a href="{{ route('register.view') }}"><button style="cursor:pointer" type="button" class="btn btn-primary">Signup</button></a>
                     </div>
-                    <!-- <div class="form-group">
-                        <a href="{{ route('register.view') }}"><button type="button">Create new account</button></a>
-                    </div> -->
                 </form>
 
             </div>

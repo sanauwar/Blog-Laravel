@@ -1,19 +1,15 @@
+<!-- Blog Title and description Insert -->
 <script>
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
     $(document).ready(function() {
-        // alert('coming');
         $('#post').on('click', function() {
             event.preventDefault();
-            // alert('coming');
             let title = $('#title').val();
             let description = $('#description').val();
-            // "_token": "{{ csrf_token() }}",
-            // alert(description)
 
             $.ajax({
                 method: 'POST',
@@ -27,37 +23,49 @@
                     setTimeout(function() {
                         location.reload(true);
                     }, 1000);
-
-
                 }
-
             })
         })
     })
 </script>
+
+<!-- All likes Count using Ajax  -->
 <script>
     $(document).ready(function() {
-        // alert('coming');
         $(".blog-like").click(function() {
-            // alert(this.attr('blog_id'))
-            alert($(this).attr('blog_id'));
+            let nxtSpan = $(this).closest('span').find('span')
+            let blog_id = ($(this).attr('blog_id'));
+
             $.ajax({
                 method: 'GET',
                 url: "{{route('blog.like')}}",
                 data: {
-                    like: 1,
-                    Comment: 1,
+                    blog_id: `${blog_id}`,
                 },
                 success: function(res) {
-                    alert(res);
+                    console.log(res);
+                    if (res.success) {
+                        alert(res.message)
+                        if (res.hasOwnProperty('lcount')) {
+                            nxtSpan.html(res.lcount);
+                        }
+                    } else {
+                        alert(res.message)
+                    }
                 }
             })
         });
-        // $("#comment").click(function() {
-        //     // alert("comment");
-        // });
-
     })
+</script>
+
+<!-- Remove Flash message  -->
+<script>
+    $("document").ready(function() {
+        setTimeout(function() {
+            $("div.alert").remove();
+        }, 2000); // 2 sec remove
+
+    });
 </script>
 
 </html>
