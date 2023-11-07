@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
@@ -69,7 +70,7 @@ class CustomAuthController extends Controller
 
     public function logout(Request $request)
     {
-        session()->flash('success', 'You have been logged out successfully.');
+        session()->flush('success', 'You have been logged out successfully.');
         return redirect('/user/login');
     }
 }
