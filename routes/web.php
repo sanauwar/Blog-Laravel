@@ -27,50 +27,46 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    /**
+     * Dashboard
+     */
+    Route::get('/home', [CustomAuthController::class, 'home'])->name('home');
+    /**
+     * User LOgout
+     */
+    Route::get('user/logout', [CustomAuthController::class, 'logout'])->name('user.logout');
+
+    /**
+     * Blog Routes
+     */
+    Route::get('blog', [BlogController::class, 'view'])->name('blog.view');
+    Route::post('blog/store', [BlogController::class, 'store'])->name('blog.store');
+    Route::get('users/allBlog', [BlogController::class, 'allblog'])->name('allblog');
+
+    /**
+     * Like Comment Routes 
+     */
+    Route::get('blog/like', [BlogController::class, 'like'])->name('blog.like');
 });
+// dd('OUT');
+
 
 require __DIR__ . '/auth.php';
 
-/**
- * Custom_Auth Routes...
- */
 
 /**
- * Dashboard
- */
-Route::get('/home', [CustomAuthController::class, 'home'])->name('home');
-
-
-/**
- * Login
+ * Custom_Auth Routes with login...
  */
 Route::get('/user/login', [CustomAuthController::class, 'view'])->name('login.view');
 Route::post('/user/login', [CustomAuthController::class, 'login'])->name('login');
 
 /**
- *Registration 
+ * Registration 
  */
-
 Route::get('/', [CustomAuthController::class, 'register'])->name('register.view');
 Route::post('user/register', [CustomAuthController::class, 'store'])->name('store');
 Route::get('user/register', [CustomAuthController::class, 'register'])->name('register.view');
-
-/**
- * User LOgout
- */
-Route::get('user/logout', [CustomAuthController::class, 'logout'])->name('user.logout');
-
-/**
- * Blog Routes
- */
-Route::get('blog', [BlogController::class, 'view'])->name('blog.view');
-Route::post('blog/store', [BlogController::class, 'store'])->name('blog.store');
-Route::get('users/allBlog', [BlogController::class, 'allblog'])->name('allblog');
-
-/**
- * Like Comment Routes 
- */
-Route::get('blog/like', [BlogController::class, 'like'])->name('blog.like');
