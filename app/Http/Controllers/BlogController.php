@@ -24,7 +24,7 @@ class BlogController extends Controller
             $user = Auth::user()->id;
             if ($user) {
                 $blog = new Blog();
-                $blog->userId = $user;
+                $blog->userId = 1; //$user;
                 $blog->title = $request->title;
                 $blog->description = $request->description;
                 $blog->save();
